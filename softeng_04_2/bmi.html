@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI 계산기</title>
+</head>
+<body>
+    <h1>BMI 계산기</h1>
+    <label>체중 (kg): <input type="number" id="weight" required></label><br>
+    <label>신장 (m): <input type="number" step="0.01" id="height" required></label><br>
+    <button id="calculate">계산하기</button>
+    <h2 id="result"></h2>
+
+    <script>
+        document.getElementById('calculate').addEventListener('click', function() {
+            const weight = parseFloat(document.getElementById('weight').value);
+            const height = parseFloat(document.getElementById('height').value);
+
+            if (weight > 0 && height > 0) {
+                const bmi = weight / (height * height);
+                let category;
+
+                if (bmi < 18.5) category = '저체중';
+                else if (bmi < 24.9) category = '정상 체중';
+                else if (bmi < 29.9) category = '과체중';
+                else category = '비만';
+
+                document.getElementById('result').innerText = `BMI: ${bmi.toFixed(2)} (${category})`;
+            } else {
+                document.getElementById('result').innerText = '체중과 신장은 0보다 커야 합니다.';
+            }
+        });
+    </script>
+</body>
+</html>
