@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<head>
+    <meta charset="utf-8">
+    <title>응소 8조(김유경, 송준혁)의 홈페이지</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="./static/practice.css" rel="stylesheet" type="text/css">
+
+    <script type="text/javascript" src="add_two_numbers.js"></script>
+    <script type="text/javascript" src="what_time_is_it.js"></script>
+
+    <style>
+        h1, h2, h3, h4, h5, button, img, label, input, p {text-align: center; display: block; margin: 0 auto;}
+    </style>
+</head>
+
+<body class="container">
+    <h1 class="mt-5">응용소프트웨어개발 8팀</h1>
+    <h2 class="mb-4">안녕하세요. 응소 8팀입니다. 홈페이지를 통해 저희를 알아 보세요!</h2>
+
+    <button class="btn btn-primary mb-3" onclick="whatTimeIsIt()">현재시간</button>
+    <hr />
+
+    <div class="form-group">
+        <label for="inputA">a</label>
+        <input class="form-control mb-2" id="inputA" value=1 onkeyup="doSomething()">
+    </div>
+
+    <div class="form-group">
+        <label for="inputB">b</label>
+        <input class="form-control mb-2" id="inputB" value=2 onkeyup="doSomething()">
+    </div>
+
+    <p><span id="valueA">1</span> + <span id="valueB">2</span> = <span id="valueC">3</span>입니다.</p>
+
+    <hr />
+
+    <img src="{{ url_for('static', filename='images/8team') }}" width="300px" alt="사진은 준비 중입니다.">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+
+{% endblock %}
