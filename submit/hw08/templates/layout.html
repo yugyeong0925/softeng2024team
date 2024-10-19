@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html lang="kr">
+  <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <meta charset="utf-8">
+ 
+    {% if title %}
+      <title>응소 8조 - {{ title }}</title>
+    {% else %}
+      <title>응소 8조</title>
+    {% endif %}
+  </head>
+ 
+  <body>
+    <header>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/blog">Blog</a>
+        <a href="/about_us">About Us</a>
+      </nav>
+      <hr>
+    </header>
+ 
+    <main role="main">
+    <!-- Main content block -->
+    {% block content %}{% endblock %}
+    </main>
+  </body>
+</html>
