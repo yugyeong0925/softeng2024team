@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html lang="kr">
+  <head>
+    <meta charset="utf-8">
+
+    {% if title %}
+      <title>응소 8조 - {{ title }}</title>
+    {% else %}
+      <title>응소 8조</title>
+    {% endif %}
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/blog">Blog</a>
+        <a href="/about_us">About Us</a>
+      </nav>
+      <hr>
+    </header>
+
+    <main role="main">
+    <!-- Main content block -->
+    {% block content %}{% endblock %}
+    </main>
+  </body>
+</html>
