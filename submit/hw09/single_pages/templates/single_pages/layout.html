@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html lang="kr">
+  <head>
+    <meta charset="utf-8">
+ 
+    {% if title %}
+      <title>응소 8조 - {{ title }}</title>
+    {% else %}
+      <title>응소 8조</title>
+    {% endif %}
+  </head>
+ 
+  <body>
+    <header>
+      <nav>
+        <a href="{% url 'single_pages:landing_page' %}">Home</a>
+        <a href="{% url 'single_pages:about_yugyeong' %}">About yugyeong</a>
+        <a href="{% url 'single_pages:about_junhyeok' %}">About Junhyeok</a>
+      </nav>
+      <hr>
+    </header>
+ 
+    <main role="main">
+    <!-- Main content block -->
+    {% block content %}{% endblock %}
+    </main>
+  </body>
+</html>
