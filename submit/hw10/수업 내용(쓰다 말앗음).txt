@@ -1,0 +1,24 @@
+1. django 
+2. django admin starproject se09_prj .
+3. dir
+4. python manage.py startapp single_blog
+5. ppt 7페이지 입력
+6. settings에 single_pages, blog 추가하기
+7. python mancage.py makemigrations
+8. python manage.py migrate
+9. vscode에 blog 밑에 migrations 폴더 생겻는지 확인하기
+10. python manage.py createsuperuser
+11. python manage.py runserver
+12. 링크 나온 거 복붙/admin 하고 로그인 하기
+13. blgo/migrations/admin.py에
+	from .models import Post
+
+	dmin.site.register(Post)쓰기
+14. 
+15. settings에 TIME_ZONE = "ASIA", USE_TZ = False
+16. python manage.py makemigrations
+17. 안 되면 manage.py 삭제하고 다시 하기
+
+admin 파일에 admin.site.register(Post), from .model 
+
+
