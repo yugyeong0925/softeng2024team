@@ -1,0 +1,59 @@
+{% extends 'blog/base.html' %}
+
+{% block main_area %}
+
+{% load static %}
+
+        <!-- Page header with logo and tagline 맨 위에 환영합니다 글씨 쓰는 곳 -->
+        <header class="py-5 bg-light border-bottom mb-4">
+            <div class="container">
+                <div class="text-center my-5">
+                    <h1 class="fw-bolder">Welcome to Blog Home!</h1>
+                    <p class="lead mb-0">A Bootstrap 5 starter layout for your next blog homepage</p>
+                </div>
+            </div>
+        </header>
+        <!-- Page content-->
+        <div class="container">
+            <div class="row">
+                <!-- Post Content Column-->
+                <div class="col-lg-8">
+                    <!-- Featured blog post-->
+
+                    {% for p in post_list %}
+                    <div class= "card md-4">
+                        {% if p.head_image %}
+                        <img class="card-img-top" src="{{ p.head_image.url }}" alt="{{ p }} head im-age">
+                        {% else %}
+                            <img class="card-img-top" src="http://picsum.photos/seed/{{ p.id }}/800/200" alt="random_image">
+                        {% endif %}
+                        <div class="card-body">
+                            <!-- <h2 class="card-title">{{ p.title }}</h2> -->
+                            <h1 class="mt-4">{{ p.title }} </h1>
+                            {% if p.hook_text %}
+                                <h5 class="text-muted">{{ p.hook_text }} </h5>
+                            {% endif %}
+                            <p class="card-text">{{ p.content | truncatewords:45 }}</p>
+                            <a href="{{ p.get_absolute_url }}" class="btn btn-primary">Read More &rarr;</a>
+                        </div>
+                        <div class="card-footer text-muted">
+                            Posted on {{ p.created_at }} by 
+                            <a href="#">작성자명 쓸 위치(개발 예정)</a>
+                    {% endfor %}
+
+                    <!-- Pagination 1페이지 2페이지 나눠둔 것 -->
+                    <nav aria-label="Pagination">
+                        <hr class="my-0" />
+                        <ul class="pagination justify-content-center my-4">
+                            <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Newer</a></li>
+                            <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#!">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#!">3</a></li>
+                            <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
+                            <li class="page-item"><a class="page-link" href="#!">15</a></li>
+                            <li class="page-item"><a class="page-link" href="#!">Older</a></li>
+                        </ul>
+                    </nav>
+                </div>
+    </body>
+{% endblock %}
