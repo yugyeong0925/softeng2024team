@@ -1,0 +1,33 @@
+<meta charset="UTF-8">
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>회원가입</h2>
+<form method="POST">
+    {% csrf_token %}
+    {% if form.errors %}
+        <div class="error-messages">
+            <ul>
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+    <div>
+        <label for="username">사용자 이름:</label>
+        <input type="text" name="username" class="form-control" required>
+    </div>
+    <div>
+        <label for="password">비밀번호:</label>
+        <input type="password" name="password" class="form-control" required>
+    </div>
+    <div>
+        <label for="password_confirm">비밀번호 확인:</label>
+        <input type="password" name="password_confirm" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">가입하기</button>
+</form>
+{% endblock %}

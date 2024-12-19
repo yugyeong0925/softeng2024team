@@ -1,0 +1,12 @@
+<meta charset="UTF-8">
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>후기 삭제</h2>
+<p>정말로 후기를 삭제하시겠습니까?</p>
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">삭제</button>
+    <a href="{% url 'movie_detail' review.movie.id %}" class="btn btn-secondary">취소</a>
+</form>
+{% endblock %}

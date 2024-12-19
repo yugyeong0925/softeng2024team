@@ -1,0 +1,9 @@
+<meta charset="UTF-8">
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>프로필</h2>
+<p>사용자 이름: {{ user.username }}</p>
+<p>이메일: {{ user.email }}</p>
+<a href="{% url 'logout' %}" class="btn btn-danger">로그아웃</a>
+{% endblock %}

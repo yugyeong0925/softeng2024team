@@ -1,0 +1,47 @@
+<meta charset="UTF-8">
+{% extends 'base.html' %}
+
+{% block title %}메인 화면{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-lg-8">
+            <h2>현재 상영 중인 영화</h2>
+            <div class="row">
+                {% for movie in movies %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="{{ movie.poster_url }}" class="card-img-top" alt="{{ movie.title }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ movie.title }}</h5>
+                            <p class="card-text">영화관: {{ movie.cinema }}</p>
+                            <p class="card-text">평점: {{ movie.rating }} / 5</p>
+                            <a href="{% url 'movie_detail' movie_id=movie.id %}" class="btn btn-primary">상세 정보</a>
+                            {% if user.is_authenticated %}
+                                <a href="{% url 'create_review' movie_id=movie.id %}" class="btn btn-secondary">후기 작성</a>
+                            {% else %}
+                                <a href="{% url 'login' %}" class="btn btn-secondary">로그인 후 작성</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <h2>최근 후기</h2>
+            <ul class="list-group">
+                {% for review in reviews %}
+                <li class="list-group-item">
+                    <h5>{{ review.movie_title }}</h5>
+                    <p>{{ review.text|truncatechars:100 }}</p>
+                    <small>작성자: {{ review.author }}</small>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

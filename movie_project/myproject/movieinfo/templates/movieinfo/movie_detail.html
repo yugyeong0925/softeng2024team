@@ -1,0 +1,20 @@
+<meta charset="UTF-8">
+<h2>{{ movie.title }}</h2>
+<p>{{ movie.description }}</p>
+
+<h3>후기</h3>
+<ul>
+    {% for review in movie.reviews.all %}
+    <li>
+        <strong>{{ review.user.username }}</strong> - 평점: {{ review.rating }}<br>
+        {{ review.content }}
+        {% if review.user == user %}
+        <a href="{% url 'update_review' review.id %}">수정</a>
+        <a href="{% url 'delete_review' review.id %}">삭제</a>
+        {% endif %}
+    </li>
+    {% empty %}
+    <p>후기가 없습니다. 첫 후기를 작성해보세요!</p>
+    {% endfor %}
+</ul>
+<a href="{% url 'create_review' movie.id %}" class="btn btn-primary">후기 작성</a>
