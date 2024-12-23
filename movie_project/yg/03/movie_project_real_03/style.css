@@ -1,0 +1,119 @@
+
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #f4f4f4, #e0e0e0); /* 그라데이션 배경 */
+    color: #333;
+}
+
+
+#hero {
+    position: relative;
+    text-align: center;
+    color: #fff;
+    background: url('path_to_your_image.jpg') no-repeat center center/cover; /* 배경 이미지 */
+    padding: 60px 20px;
+}
+
+#hero h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 20px 0;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* 텍스트 그림자 효과 */
+}
+
+#hero p {
+    font-size: 1.5rem;
+    margin: 10px 0;
+    line-height: 1.6;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2); /* 텍스트 그림자 효과 */
+}
+
+
+.icon-box {
+    text-align: center;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 20px 0;
+    width: 100%;
+    max-width: 320px;
+    margin: 20px auto;
+}
+
+.icon-box:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.icon-box i {
+    font-size: 3rem;
+    color: #f04a4a;
+    margin-bottom: 15px;
+    transition: color 0.3s ease;
+}
+
+.icon-box i:hover {
+    color: #e10b0b;
+}
+
+.icon-box h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.icon-box h3 a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.icon-box h3 a:hover {
+    color: #f04a4a;
+}
+
+.icon-box p {
+    font-size: 1rem;
+    color: #777;
+    line-height: 1.6;
+    margin-top: 10px;
+}
+
+
+.btn {
+    display: inline-block;
+    background-color: #f04a4a;
+    color: white;
+    font-size: 1rem;
+    padding: 12px 24px;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #e10b0b;
+    transform: scale(1.05);
+}
+
+
+@media (max-width: 768px) {
+    #hero h2 {
+        font-size: 2.5rem;
+    }
+
+    .icon-box {
+        max-width: 100%;
+    }
+
+    .icon-box i {
+        font-size: 2.5rem;
+    }
+}
