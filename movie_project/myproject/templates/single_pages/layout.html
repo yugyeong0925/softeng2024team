@@ -1,0 +1,239 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>{% block title %} MOVIE PROJECT {% endblock %}</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <!-- Favicons -->
+    <link href="{% static 'single_pages/assets/img/favicon.png' %}" rel="icon">
+    <link href="{% static 'single_pages/assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- 기본 스타일링 (공통 스타일) -->
+    <style>
+        /* 기본적인 리셋 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #121212; /* 어두운 배경 */
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Roboto', sans-serif;
+            font-weight: bold;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* 헤더 스타일 */
+        header {
+            background-color: #1f1f1f;
+            padding: 20px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo h1 {
+            font-size: 2rem;
+            color: #ff6600;
+            text-transform: uppercase;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            justify-content: flex-end;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            font-size: 1rem;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #ff6600;
+            color: #fff;
+        }
+
+        /* Footer 스타일 */
+        footer {
+            background-color: #1f1f1f;
+            padding: 40px 0;
+            color: #fff;
+        }
+
+        footer .footer-top {
+            margin-bottom: 30px;
+        }
+
+        .footer-about p {
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        .footer-links h4 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            font-size: 1rem;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links ul li a {
+            color: #ff6600;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links ul li a:hover {
+            color: #fff;
+        }
+
+        .copyright {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        .sitename {
+            color: #ff6600;
+        }
+
+        /* Scroll Top Button */
+        #scroll-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #ff6600;
+            color: white;
+            border-radius: 50%;
+            padding: 10px 15px;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #scroll-top:hover {
+            background-color: #ff4d00;
+        }
+    </style>
+
+    {% block extra_styles %}{% endblock %}
+</head>
+
+<body class="{% block body_class %} body_class {% endblock %}">
+    <header id="header" class="header d-flex align-items-center position-relative">
+        <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+            <a href="{% url 'single_pages:index' %}" class="logo d-flex align-items-center me-auto me-lg-0">
+                <h1 class="sitename">GP</h1>
+                <span>.</span>
+            </a>
+
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                    <li class="dropdown"><a href="{% url 'admin:index' %}"><span>Manager</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                        <ul>
+                            <li><a href="{% url 'admin:index' %}">문</a></li>
+                            <li><a href="{% url 'admin:index' %}">온습도</a></li>
+                            <li><a href="{% url 'admin:index' %}">쿠키 여부 입력</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a href="{% url 'single_pages:user' %}"><span>User</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                        <ul>
+                            <li><a href="{% url 'single_pages:movie_list' %}">상영시간표 모아보기</a></li>
+                            <li><a href="{% url 'single_pages:wizard' %}">영화 마법사</a></li>
+                            <li><a href="https://cgvmate.com/cgv/event/giveaway" target="_blank">이벤트 현황 - CGV</a></li>
+                            <li><a href="{% url 'single_pages:review' %}">리뷰</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="mailto:yugyeong@jbnu.ac.kr?subject=문의사항&body=Hello,%20I'd%20like%20to%20contact%20you.">Contact</a></li>
+                </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer id="footer" class="footer dark-background">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row gy-4">
+                    <div class="col-lg-4 col-md-6 footer-about">
+                        <a href="{% static 'single_pages/index' %}" class="logo d-flex align-items-center">
+                            <span class="sitename">GP</span>
+                        </a>
+                        <div class="footer-contact pt-3">
+                            <p><span>피드백이 있다면 아래로 연락 주세요</span></p>
+                            <p><strong>Email:</strong> <span>yugyeong@jbnu.ac.kr</span></p>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 footer-links">
+                        <h4>Manager</h4>
+                        <ul>
+                            <li><a href="{% url 'admin:index' %}">- 문</a></li>
+                            <li><a href="{% url 'admin:index' %}">- 온습도</a></li>
+                            <li><a href="{% url 'admin:index' %}">- 쿠키 여부 입력</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-md-3 footer-links">
+                        <h4>User</h4>
+                        <ul>
+                            <li><a href="{% url 'single_pages:movie_list' %}">- 상영시간표 모아보기</a></li>
+                            <li><a href="{% url 'single_pages:wizard' %}">- 영화 마법사</a></li>
+                            <li><a href="https://cgvmate.com/cgv/event/giveaway" target="_blank">- 이벤트 현황 - CGV</a></li>
+                            <li><a href="{% url 'single_pages:review' %}">- 리뷰</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <div class="container text-center">
+                <p>© <span>Copyright</span> <strong class="px-1 sitename">GP</strong> <span>All Rights Reserved</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+</body>
+
+</html>
+
