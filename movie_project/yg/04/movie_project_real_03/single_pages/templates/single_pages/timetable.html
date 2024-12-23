@@ -1,0 +1,36 @@
+{% extends './layout.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Movie Section -->
+<section id="movies" class="movies section">
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <h2>영화 목록</h2>
+    <p>우리 영화들</p>
+  </div><!-- End Section Title -->
+
+  <div class="container">
+    <div class="row gy-4">
+      {% for movie in movies %}
+        <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+          <div class="movie-item">
+            <div class="movie-img">
+              <img src="{{ movie.image_url }}" class="img-fluid" alt="{{ movie.title }}">
+            </div>
+            <div class="movie-info">
+              <h4>{{ movie.title }}</h4>
+              <span>{{ movie.release_date }}</span>
+              <p>{{ movie.description }}</p>
+            </div>
+          </div>
+        </div><!-- End Movie Item -->
+      {% endfor %}
+    </div>
+  </div>
+</section><!-- /Movie Section -->
+{% endblock %}
+
+
+
+
