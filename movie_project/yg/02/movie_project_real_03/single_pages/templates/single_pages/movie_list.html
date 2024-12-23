@@ -1,0 +1,36 @@
+<!-- movie_list.html -->
+
+{% extends './layout.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Movie Section -->
+<section id="movies" class="movies section">
+  <div class="container">
+    <div class="row gy-4">
+      {% for movie in movies %}
+      <div class="movie" style="display: flex; margin-bottom: 20px; align-items: center;">
+        <div style="flex-shrink: 0; margin-right: 20px;">
+          {% if movie.image %}
+          <img src="{{ movie.image.url }}" alt="{{ movie.title }}" style="width: 250px; height: 350px; object-fit: cover;">
+          {% else %}
+          <p>No image available</p>
+          {% endif %}
+        </div>
+
+        <div style="flex-grow: 1;">
+          <h1 style="font-size: 35px; font-weight: bold; margin-bottom: 10px;">{{ movie.title }}</h1>
+          <p>개봉일: {{ movie.release_date|date:"Y년 n월 j일" }}</p>
+
+          <p>{{ movie.description }}</p>
+
+          {% if movie.naver_link %}
+          <a href="{{ movie.naver_link }}" target="_blank" style="font-size: 16px; color: #1a73e8;">네이버에서 정보 더보기</a>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}
