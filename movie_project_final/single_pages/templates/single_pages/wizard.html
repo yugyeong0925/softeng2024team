@@ -1,0 +1,61 @@
+{% extends './layout.html' %}
+
+{% block content %}
+<section id="movies" class="movies section">
+    <div class="container">
+        <div class="section-title" style="text-align: left; margin-bottom: 30px;">
+            <h2>영화 목록</h2>
+            <br>
+            <p>하루 안에 보고 싶은 영화를 체크해 주세요</p>
+        </div>
+
+        <!-- 폼 생성 -->
+        <form action="{% url 'single_pages:movie_showtimes_selected' %}" method="POST">
+            {% csrf_token %}
+            <div class="row gy-4">
+                {% for movie in movies %}
+                <div class="movie" style="display: flex; align-items: center; margin-bottom: 20px;">
+                    <!-- 체크박스 -->
+                    <div style="flex-shrink: 0; margin-right: 20px;">
+                        <label>
+                            <input type="checkbox" name="selected_movies" value="{{ movie.id }}" style="width: 20px; height: 20px;"/>
+                        </label>
+                    </div>
+
+                    <!-- 영화 이미지 -->
+                    <div style="flex-shrink: 0; margin-right: 20px;">
+                        {% if movie.image %}
+                        <a href="{% url 'single_pages:movie_showtimes' movie.id %}">
+                            <img src="{{ movie.image.url }}" alt="{{ movie.title }}" style="width: 250px; height: 350px; object-fit: cover;">
+                        </a>
+                        {% else %}
+                        <p>No image available</p>
+                        {% endif %}
+                    </div>
+
+                    <!-- 영화 제목과 설명 -->
+                    <div style="flex-grow: 1;">
+                        <h1 style="font-size: 24px; font-weight: bold; margin-bottom: 10px;">
+                            {{ movie.title }}
+                        </h1>
+                        <p>개봉일: {{ movie.release_date|date:"Y년 n월 j일" }}</p>
+                        <p>쿠키 영상: {% if movie.cookie_status %} O {% else %} X {% endif %}</p>
+                        <p>{{ movie.description }}</p>
+                        {% if movie.naver_link %}
+                        <a href="{{ movie.naver_link }}" target="_blank" style="font-size: 16px; color: #1a73e8;">네이버에서 정보 더보기</a>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- 확인 버튼 -->
+            <div style="text-align: center; margin-top: 30px;">
+                <button type="submit" style="padding: 10px 20px; font-size: 16px; background-color: #1a73e8; color: white; border: none; cursor: pointer;">
+                    확인
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}

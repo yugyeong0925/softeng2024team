@@ -1,0 +1,107 @@
+{% extends './layout.html' %}
+{% load static %}
+
+{% block content %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>영화 리뷰 작성</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #fff;
+            color: #000;
+        }
+        h1 {
+            text-align: center;
+            color: #000;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #f5f5dc;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        label {
+            font-weight: bold;
+            color: #000;
+        }
+        select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            width: 48%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 5px 1%;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        ul li {
+            padding: 10px;
+            background-color: #f9f9f9;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        ul li strong {
+            color: #333;
+        }
+    </style>
+
+    <h1>영화 리뷰 작성</h1>
+
+    <!-- 리뷰 작성 폼 -->
+    <form method="POST" action="{% url 'single_pages:review' %}">
+        {% csrf_token %}
+
+        <div>
+            <label for="movie">영화 선택:</label>
+            <select name="movie" id="movie" required>
+                {% for movie in movies %}
+                    <option value="{{ movie.id }}">{{ movie.title }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div>
+            <label for="review_text">리뷰 내용:</label>
+            <textarea name="review_text" id="review_text" rows="4" required></textarea>
+        </div>
+
+        <div>
+            <button type="submit">리뷰 작성</button>
+        </div>
+    </form>
+
+    <!-- 작성된 리뷰 목록 -->
+    {% if reviews %}
+        <h2>작성된 리뷰 목록</h2>
+        <ul>
+            {% for review in reviews %}
+                <li>
+                    <strong>{{ review.movie.title }}</strong>: {{ review.review_text }}
+                    <span>({{ review.created_at|date:"Y-m-d H:i" }})</span>
+                </li>
+            {% empty %}
+                <li>작성된 리뷰가 없습니다.</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

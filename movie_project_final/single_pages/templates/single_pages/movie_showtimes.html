@@ -1,0 +1,20 @@
+{% extends './layout.html' %}
+
+{% block content %}
+  <section id="movie_showtimes" class="section">
+    <div class="container">
+      <h2 style="font-size: 3rem; font-weight: bold; color: #333;">{{ movie.title }}의 상영 시간표</h2>
+      <p style="font-size: 1.5rem; color: #666;">상영일정</p>
+      <ul style="list-style-type: none; padding-left: 0;">
+        {% for showtime in showtimes %}
+          <li style="font-size: 1.3rem; margin-bottom: 15px; color: #444;">
+            <strong style="font-size: 1.4rem; color: #222;">{{ showtime.show_date|date:"Y년 n월 j일" }}</strong> - 
+            {{ showtime.show_time }} ~ {{ showtime.end_time }} at {{ showtime.location }}
+          </li>
+        {% empty %}
+          <li style="font-size: 1.3rem; color: #888;">상영 시간이 없습니다.</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+{% endblock %}
